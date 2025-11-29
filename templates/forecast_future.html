@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ model_name }} 7-Day Forecast</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background: linear-gradient(to right, #fff9c4, #ffffff); }
+        .card { transition: transform 0.2s; }
+        .card:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="container py-5">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="fw-bold text-warning">📅 {{ model_name }} 7-Day Forecast</h2>
+            <p class="text-muted">Future predictions for the next 7 days</p>
+            <table class="table table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Predicted (°C)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in forecast_table %}
+                    <tr>
+                        <td>{{ row.date }}</td>
+                        <td>{{ "%.2f"|format(row.predicted) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/" class="btn btn-outline-primary mt-3">⬅ Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
