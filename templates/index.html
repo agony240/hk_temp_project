@@ -2,78 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HK Temperature Forecast</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background: linear-gradient(to right, #e3f2fd, #ffffff);
-        }
-        .card {
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    <title>Hong Kong Temperature Forecasting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="container py-5">
+<body class="bg-light">
 
-    <div class="text-center mb-5">
-        <h1 class="fw-bold text-primary">🌡️ HK Temperature Forecast</h1>
-        <p class="text-muted">Compare RNN & LSTM models for Hong Kong grass minimum temperature</p>
+    <!-- Banner 標題 -->
+    <header class="bg-primary bg-gradient text-white text-center py-4 shadow-sm">
+        <h1 class="display-5 fw-bold">🌡️ Hong Kong Temperature Forecasting Dashboard</h1>
+        <p class="lead mb-0">Explore historical data, model forecasts, and performance comparisons</p>
+    </header>
+
+    <!-- Main -->
+    <div class="container mt-5">
+
+        <!-- 第一行：History -->
+        <div class="row mb-5">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-lg rounded-4 border-info">
+                    <div class="card-body bg-info-subtle text-center rounded-3">
+                        <h3 class="fw-bold text-info">📈 Historical Data</h3>
+                        <p class="text-muted">View past temperature records and trends in Hong Kong.</p>
+                        <a href="/history" class="btn btn-info btn-lg">View History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二行：RNN + LSTM Forecast -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <div class="card shadow-lg rounded-4 border-success h-100">
+                    <div class="card-body bg-success-subtle text-center rounded-3 d-flex flex-column justify-content-center">
+                        <h3 class="fw-bold text-success">🤖 RNN Forecast</h3>
+                        <p class="text-muted">Baseline Recurrent Neural Network predictions with visualization.</p>
+                        <div class="d-grid gap-2">
+                            <a href="/forecast_rnn" class="btn btn-success btn-lg">RNN Forecast</a>
+                            <a href="/forecast_rnn_future" class="btn btn-outline-success btn-lg">Future RNN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-lg rounded-4 border-warning h-100">
+                    <div class="card-body bg-warning-subtle text-center rounded-3 d-flex flex-column justify-content-center">
+                        <h3 class="fw-bold text-warning">🧠 LSTM Forecast</h3>
+                        <p class="text-muted">Advanced Long Short-Term Memory predictions with visualization.</p>
+                        <div class="d-grid gap-2">
+                            <a href="/forecast_lstm" class="btn btn-warning btn-lg">LSTM Forecast</a>
+                            <a href="/forecast_lstm_future" class="btn btn-outline-warning btn-lg">Future LSTM</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三行：Error Range Analysis -->
+        <div class="row mb-5">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-lg rounded-4 border-primary">
+                    <div class="card-body bg-primary-subtle text-center rounded-3">
+                        <h3 class="fw-bold text-primary">📊 Error Range Analysis</h3>
+                        <p class="text-muted">See how often RNN and LSTM predictions differ from actual values by 2°C, 5°C, or more.</p>
+                        <a href="/error_range" class="btn btn-primary btn-lg">View Error Ranges</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四行：Model Error Comparison -->
+        <div class="row mb-5">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-lg rounded-4 border-danger">
+                    <div class="card-body bg-danger-subtle text-center rounded-3">
+                        <h3 class="fw-bold text-danger">⚖️ Model Error Comparison</h3>
+                        <p class="text-muted">Compare RNN and LSTM performance using MAE and RMSE metrics.</p>
+                        <a href="/errors" class="btn btn-danger btn-lg">Compare Errors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">📜 History</h5>
-                    <p class="card-text">View historical temperature trends</p>
-                    <a href="/history" class="btn btn-primary">Go</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">🔄 RNN Forecast</h5>
-                    <p class="card-text">Baseline model predictions</p>
-                    <a href="/forecast_rnn" class="btn btn-secondary">Go</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">🧠 LSTM Forecast</h5>
-                    <p class="card-text">Advanced model predictions</p>
-                    <a href="/forecast_lstm" class="btn btn-success">Go</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">📅 RNN 7-Day Forecast</h5>
-                    <p class="card-text">Future predictions with RNN</p>
-                    <a href="/forecast_rnn_future" class="btn btn-warning">Go</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title">📅 LSTM 7-Day Forecast</h5>
-                    <p class="card-text">Future predictions with LSTM</p>
-                    <a href="/forecast_lstm_future" class="btn btn-info">Go</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5 shadow-sm">
+        <p class="mb-0">© 2025 HK Temperature Forecasting | Powered by Flask & TensorFlow</p>
+    </footer>
 
 </body>
 </html>
